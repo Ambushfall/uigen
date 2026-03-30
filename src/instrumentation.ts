@@ -9,7 +9,9 @@
 // Removing the globals on the server restores pre-25 behaviour where
 // typeof localStorage === "undefined" and SSR guard checks work correctly.
 
-if (typeof globalThis !== "undefined" && typeof window === "undefined") {
-  delete globalThis.localStorage;
-  delete globalThis.sessionStorage;
+export async function register() {
+  if (typeof globalThis !== 'undefined' && typeof window === 'undefined') {
+    delete (globalThis as any).localStorage;
+    delete (globalThis as any).sessionStorage;
+  }
 }

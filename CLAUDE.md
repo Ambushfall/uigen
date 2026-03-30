@@ -49,7 +49,7 @@ UIGen is a Next.js 15 App Router app where users describe React components in a 
 
 ### Node Compatibility Shim
 
-`node-compat.cjs` is required via `NODE_OPTIONS` at dev/build time. It deletes `globalThis.localStorage` and `globalThis.sessionStorage` on the server to fix a Node 25+ SSR issue where those globals exist but are non-functional.
+`src/instrumentation.ts` deletes `globalThis.localStorage` and `globalThis.sessionStorage` on the server to fix a Node 25+ SSR issue where Node 25 exposes those globals but they're non-functional, causing SSR failures.
 
 ### Database
 
