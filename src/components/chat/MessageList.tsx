@@ -11,6 +11,7 @@ interface MessageListProps {
 }
 
 export function MessageList({ messages, isLoading }: MessageListProps) {
+
   if (messages.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full px-4 text-center">
@@ -26,9 +27,9 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
   return (
     <div className="flex flex-col h-full overflow-y-auto px-4 py-6">
       <div className="space-y-6 max-w-4xl mx-auto w-full">
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <div
-            key={message.id || message.content}
+            key={`${index}_${message.id || btoa(message.content).slice(-15)}_${message.role}`}
             className={cn(
               "flex gap-4",
               message.role === "user" ? "justify-end" : "justify-start"
