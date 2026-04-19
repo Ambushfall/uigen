@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 
 export default async function Home() {
   const user = await getUser();
+  console.log("page.tsx")
 
   // If user is authenticated, redirect to their most recent project
   if (user) {
